@@ -7,6 +7,7 @@ def coffee_machine():
     my_menu = Menu()
     my_coffee_maker = CoffeeMaker()
     my_money_machine = MoneyMachine()
+
     machine_on = True
     while machine_on:
         order = input(f'What would you like? ({my_menu.get_items()}) ')
