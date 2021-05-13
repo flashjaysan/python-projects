@@ -23,12 +23,12 @@ class Ball(Turtle):
     def check_for_point(self, score):
         if self.xcor() > 380:
             self.hideturtle()
-            self.goto(0, 0)
+            self.home()
             self.move = [-10, self.random_y_direction()]
             score.point_to_l_player()
         if self.xcor() < -380:
             self.hideturtle()
-            self.goto(0, 0)
+            self.home()
             self.move = [10, self.random_y_direction()]
             score.point_to_r_player()
 
