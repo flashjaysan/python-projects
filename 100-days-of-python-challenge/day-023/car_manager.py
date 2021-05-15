@@ -31,7 +31,7 @@ class CarManager:
                 car.goto(320, car.ycor())
             else:
                 car.showturtle()
-                car.goto(car.xcor() - MOVE_INCREMENT * self.speed_multiplier, car.ycor())
+                car.backward(MOVE_INCREMENT * self.speed_multiplier)
 
     def increase_speed(self):
         self.speed_multiplier += 0.5
