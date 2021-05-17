@@ -20,16 +20,14 @@ states_total = states_remaining
 exit_loop = False
 while states_remaining > 0 and not exit_loop:
     answer = screen.textinput(title=f'{states_total - states_remaining}/{states_total} states', prompt='What\'s another state name?').title()
-    if answer in states:
+    if answer == 'Exit':
+        exit_loop = True
+    elif answer in states:
         row = data[data['state'] == answer]
         turtle.goto(int(row['x']), int(row['y']))
         turtle.write(answer, align='center')
         states.remove(answer)
         states_remaining = len(states)
-        # print(states) # show states remaining
-    elif answer == 'Exit':
-        exit_loop = True
 
 if len(states) > 0:
-    states_data_frame = pandas.DataFrame(states)
-    states_data_frame.to_csv('states_to_review.csv')
+    pandas.DataFrame(states).to_csv('states_to_review.csv')
