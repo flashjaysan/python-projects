@@ -31,6 +31,7 @@ menubar = tkinter.Menu(root)
 menu = tkinter.Menu(menubar, tearoff=0)
 menu.add_command(label="Hiragana", command=set_hiragana)
 menu.add_command(label="Katakana", command=set_katakana)
+menubar.add_cascade(label="Select", menu=menu)
 root['menu'] = menubar
 
 label = tkinter.Label(root)
