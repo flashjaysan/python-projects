@@ -44,7 +44,7 @@ entry['justify'] = 'center'
 entry.pack()
 
 
-def check():
+def check(*args):
     global current_kana
     if entry.get() == current_kana['romaji']:
         current_kana = new_kana()
@@ -53,7 +53,10 @@ def check():
 
 
 button = tkinter.Button(root, text='Check')
+button.pack_configure(pady=10)
 button.pack()
 button['command'] = check
+
+root.bind('<Return>', check)
 
 root.mainloop()
