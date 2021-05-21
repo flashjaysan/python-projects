@@ -31,21 +31,21 @@ website_label = tkinter.Label(text='Website:', bg='white')
 website_label.grid(column=1, row=2, sticky='e')
 
 website_entry = tkinter.Entry(bg='white', width=35)
-website_entry.grid(column=2, row=2, sticky='w', columnspan=2)
+website_entry.grid(column=2, row=2, columnspan=2, sticky=tkinter.NW + tkinter.SE)
 website_entry.focus()
 
 email_label = tkinter.Label(text='Email/Username:', bg='white')
 email_label.grid(column=1, row=3, sticky='e')
 
 email_entry = tkinter.Entry(bg='white', width=35)
-email_entry.grid(column=2, row=3, sticky='w', columnspan=2)
+email_entry.grid(column=2, row=3, sticky=tkinter.NW + tkinter.SE, columnspan=2)
 email_entry.insert(0, '@gmail.com')
 
 password_label = tkinter.Label(text='Password:', bg='white')
 password_label.grid(column=1, row=4, sticky='e')
 
 password_entry = tkinter.Entry(bg='white', width=21)
-password_entry.grid(column=2, row=4, sticky='w')
+password_entry.grid(column=2, row=4, sticky=tkinter.NW + tkinter.SE)
 
 
 def generate_password_gui():
@@ -56,7 +56,7 @@ def generate_password_gui():
 
 
 password_button = tkinter.Button(text='Generate Password', bg='white', command=generate_password_gui)
-password_button.grid(column=3, row=4, sticky='w')
+password_button.grid(column=3, row=4, sticky=tkinter.NW + tkinter.SE)
 
 
 def save():
@@ -74,6 +74,6 @@ def save():
 
 
 add_button = tkinter.Button(text='Add', bg='white', width=36, command=save)
-add_button.grid(column=2, row=5, columnspan=2)
+add_button.grid(column=2, row=5, columnspan=2, sticky=tkinter.NW + tkinter.SE)
 
 root.mainloop()
