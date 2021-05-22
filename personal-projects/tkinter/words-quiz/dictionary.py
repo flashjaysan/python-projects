@@ -1,6 +1,7 @@
 import word
 import random
 
+
 class Dictionary:
 
     def __init__(self):

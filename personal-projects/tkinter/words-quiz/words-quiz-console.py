@@ -2,7 +2,7 @@ import word
 import dictionary
 
 
-class WordsQuiz:
+class WordsQuizConsole:
     def __init__(self):
         self.dictionary = dictionary.Dictionary()
 
@@ -24,4 +24,4 @@ class WordsQuiz:
 
 
 if __name__ == '__main__':
-    WordsQuiz().main()
+    WordsQuizConsole().main()
