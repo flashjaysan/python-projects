@@ -32,8 +32,29 @@ website_label = tkinter.Label(text='Website:', bg='white')
 website_label.grid(column=1, row=2, sticky='e')
 
 website_entry = tkinter.Entry(bg='white', width=35)
-website_entry.grid(column=2, row=2, columnspan=2, sticky=tkinter.NW + tkinter.SE)
+website_entry.grid(column=2, row=2, sticky=tkinter.NW + tkinter.SE)
 website_entry.focus()
+
+
+def search_website():
+    site = website_entry.get()
+    try:
+        with open('passwords.json', 'r') as file:
+            data = json.load(file)
+    except FileNotFoundError:
+        tkinter.messagebox.showinfo(title='No password file yet', message='Password file doesn\'t exist.')
+    else:
+        if site in data:
+            email = data[site]['email']
+            password = data[site]['password']
+            tkinter.messagebox.showinfo(title=f'{site} login information',
+                                        message=f'Email: {email}\nPassword: {password}')
+        else:
+            tkinter.messagebox.showinfo(title='No password registered', message='This site isn\'t registered yet.')
+
+
+search_button = tkinter.Button(text='Search', bg='white', command=search_website)
+search_button.grid(column=3, row=2, sticky=tkinter.NW + tkinter.SE)
 
 email_label = tkinter.Label(text='Email/Username:', bg='white')
 email_label.grid(column=1, row=3, sticky='e')
@@ -71,17 +92,22 @@ def save():
         }
     }
 
-
     if len(site) == 0 or len(login) == 0 or len(password) == 0:
         tkinter.messagebox.showinfo(title='Invalid data', message='Some fields are empty.')
     else:
-        with open('passwords.json', 'r') as file:
-            data = json.load(file)
+        try:
+            with open('passwords.json', 'r') as file:
+                data = json.load(file)
+        except FileNotFoundError:
+            with open('passwords.json', 'w') as file:
+                json.dump(new_data, file, indent=4)
+        else:
             data.update(new_data)
-        with open('passwords.json', 'w') as file:
-            json.dump(data, file, indent=4)
-        website_entry.delete(0, tkinter.END)
-        password_entry.delete(0, tkinter.END)
+            with open('passwords.json', 'w') as file:
+                json.dump(data, file, indent=4)
+        finally:
+            website_entry.delete(0, tkinter.END)
+            password_entry.delete(0, tkinter.END)
 
 
 add_button = tkinter.Button(text='Add', bg='white', width=36, command=save)
