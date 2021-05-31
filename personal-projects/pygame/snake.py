@@ -35,8 +35,6 @@ def game_over():
     antialiasing = False
     color = red
     surface = font.render('GAME OVER', antialiasing, color)
-    
-    
-    
+
+
 main()
-        

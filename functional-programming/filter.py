@@ -13,13 +13,10 @@ scientists = (
 )
 
 # crée un iterator qui ne sélectionne que les scientifiques ayant un prix Nobel
-nobel_scientists = filter(lambda x: x.nobel, scientists)
+nobel_scientists = filter(lambda scientist: scientist.nobel, scientists)
 
+# utilise l'iterator pour afficher chaque élément sélectionné
 for scientist in nobel_scientists:
     print(scientist)
 
 print(next(nobel_scientists)) # provoque une exception StopITeration
-
-
-def filter_rewrite(function, iterable):
-    return [item for item in iterable if function(item)]

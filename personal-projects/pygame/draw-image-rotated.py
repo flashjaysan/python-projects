@@ -1,15 +1,21 @@
 import pygame
+import vector2
+import math
 
 
 class Game:
 
     def __init__(self):
         pygame.init()
-        pygame.display.set_caption('Game name')
-        self.resolution = 640, 360
-        self.application_surface = pygame.display.set_mode(self.resolution, flags=pygame.SCALED)
+        pygame.display.set_caption('Bouncing image')
+        self.resolution_width = 640
+        self.resolution_height = 360
+        self.application_surface = pygame.display.set_mode((self.resolution_width, self.resolution_height), flags=pygame.SCALED)
         self.BASE_FPS = 60
         self.clock = pygame.time.Clock()
+        self.image = pygame.image.load('cat.jpg')
+        self.angle = 0
+        self.position = vector2.Vector2()
         self.initialize()
         self.running = True
         self.main_loop()
@@ -21,11 +27,14 @@ class Game:
 
     # logic of the game
     def update(self, delta_time):
-        pass
+        self.angle += 50 * delta_time
 
     # drawing of the game
     def draw(self):
-        pass
+        rotated_image = pygame.transform.rotate(self.image, self.angle)
+        self.position.x = (self.resolution_width - rotated_image.get_width()) / 2
+        self.position.y = (self.resolution_height - rotated_image.get_height()) / 2
+        self.application_surface.blit(rotated_image, self.position.to_tuple())
 
     def main_loop(self):
         while self.running:
@@ -42,7 +51,7 @@ class Game:
             self.update(delta_time)
 
             # draw
-            self.application_surface.fill((0, 0, 0))
+            self.application_surface.fill('black')
             self.draw()
             pygame.display.update()
 
