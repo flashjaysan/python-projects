@@ -8,7 +8,10 @@ class FlashCards:
     BACKGROUND_COLOR = "#B1DDC6"
 
     def __init__(self):
-        data = pandas.read_csv('data/french_words.csv')
+        try:
+            data = pandas.read_csv('data/words_to_learn.csv')
+        except FileNotFoundError:
+            data = pandas.read_csv('data/french_words.csv')
         self.words_list = data.to_dict(orient="records")
 
         self.word = None
@@ -45,7 +48,13 @@ class FlashCards:
 
     def right(self):
         self.root.after_cancel(self.after_id)
+        self.remove_current_word()
         self.new_word()
+
+    def remove_current_word(self):
+        self.words_list.remove(self.word)
+        data_frame = pandas.DataFrame(self.words_list)
+        data_frame.to_csv('data/words_to_learn.csv', index=False)
 
     def new_word(self):
         self.word = random.choice(self.words_list)
