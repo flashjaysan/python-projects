@@ -1,4 +1,6 @@
 import pygame
+import paddle
+import ball
 
 
 class Game:
@@ -22,7 +24,12 @@ class Game:
 
     # called each time the game restarts
     def initialize(self):
-        pass
+        self.ball = ball.Ball()
+        self.left_paddle = paddle.Paddle()
+        self.right_paddle = paddle.Paddle()
+        self.sprite_group.add(self.ball)
+        self.sprite_group.add(self.left_paddle)
+        self.sprite_group.add(self.right_paddle)
 
     # logic of the game
     def update(self, delta_time):
