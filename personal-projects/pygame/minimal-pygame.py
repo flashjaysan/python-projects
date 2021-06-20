@@ -10,7 +10,7 @@ class Game:
         pygame.mixer.init()
         pygame.display.set_caption('Game name')
         self.resolution = 640, 360
-        self.application_surface = pygame.display.set_mode(self.resolution, flags=pygame.SCALED)
+        self.display_surface = pygame.display.set_mode(self.resolution, flags=pygame.SCALED)
         self.BASE_FPS = 60
         self.clock = pygame.time.Clock()
         self.sprite_group = pygame.sprite.Group()
@@ -30,7 +30,7 @@ class Game:
 
     # drawing of the game
     def draw(self):
-        self.sprite_group.draw(self.application_surface)
+        self.sprite_group.draw(self.display_surface)
 
     def main_loop(self):
         while self.running:
@@ -47,9 +47,9 @@ class Game:
             self.update(delta_time)
 
             # draw
-            self.application_surface.fill(Game.BACKGROUND_COLOR)
+            self.display_surface.fill(Game.BACKGROUND_COLOR)
             self.draw()
-            pygame.display.update()
+            pygame.display.update() # or pygame.display.flip()
 
 
 if __name__ == "__main__":
