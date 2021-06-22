@@ -13,7 +13,7 @@ class Game:
         pygame.display.set_caption('Snake')
         self.resolution = 640, 360
         self.display_surface = pygame.display.set_mode(self.resolution, flags=pygame.SCALED)
-        self.tile_size = 20
+        self.tile_size = 40
         self.grid_width = self.resolution[0] / self.tile_size
         self.grid_height = self.resolution[1] / self.tile_size
         self.sound_move = pygame.mixer.Sound('assets/sounds/move.wav')

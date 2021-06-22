@@ -3,7 +3,7 @@ import pygame
 
 class Game:
 
-    BACKGROUND_COLOR = pygame.color.Color((0, 0, 0))
+    BACKGROUND_COLOR = pygame.Color('black')
 
     def __init__(self):
         pygame.init()

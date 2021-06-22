@@ -10,8 +10,8 @@ class Snake:
         self.tile_size = tile_size
         self.grid_width = grid_width
         self.grid_height = grid_height
-        x = self.grid_width / 2
-        y = self.grid_height / 2
+        x = int(self.grid_width / 2)
+        y = int(self.grid_height / 2)
         self.parts = [pygame.math.Vector2(x - 1, y), pygame.math.Vector2(x, y)]
         self.direction = pygame.math.Vector2(1, 0)
         self.move_delay = 0.2
